@@ -1,5 +1,7 @@
  SWI Prolog
 
+ I don't know Prolog that well to say for sure, but I think the code is very ugly.
+
 ## Задание на работу
 
 ### a

@@ -40,26 +40,25 @@ phi_(CX, I, X, N):- mut_prime(CX, X),
 
 %%% d - Goldbach's conjecture (A, B - primes, A + B = X)
 
-%% goldbach(X, A, B):- HALF is div(X, 2),
-%%                     print("0 "), print(HALF), nl,
-%%                     goldbach_(X, A, B, 1, HALF).
-%% goldbach_(_, _, _, LIM, LIM).
-%% goldbach_(X, A, B, I, LIM):- prime_factors(I, L1),
-%%                              print(L1), nl,
-%%                              length(L1, L1L),
-%%                              L1L = 0,
-%%                              K is X - I,
-%%                              prime_factors(K, L2),
-%%                              print(L2), nl,
-%%                              length(L2, L2L),
-%%                              L2L = 0,
-%%                              nth0(0, L2, _),
-%%                              print("3 "), print(I), nl,
-%%                              A is I,
-%%                              B is K
-%%                              ;
-%%                              J is I + 1,
-%%                              goldbach_(X, A, B, J, LIM).
+% I used some help
+% https://stackoverflow.com/questions/23282097/prolog-program-to-check-if-a-number-is-prime
+divisible(X, Y) :- 0 is X mod Y, !.
+divisible(X, Y) :- X > Y+1, divisible(X, Y+1).
+
+is_prime(2) :- true, !.
+is_prime(X) :- X < 2, !, false.
+is_prime(X) :- not(divisible(X, 2)).
+
+goldbach(X, A, B):- goldbach_(X, A, B, 1).
+goldbach_(X, _, _, X):- !, false.
+goldbach_(X, A, B, I):- is_prime(I),
+                        K is X - I,
+                        is_prime(K),
+                        A is I,
+                        B is K
+                        ;
+                        J is I + 1,
+                        goldbach_(X, A, B, J).
 
 %%% e - Nth element of a list
 
