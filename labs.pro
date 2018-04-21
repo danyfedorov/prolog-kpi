@@ -22,8 +22,7 @@ gcd(X, Y, D):- Y < X,
                Z is X - Y,
                gcd(Z, Y, D).
 
-mut_prime(X, Y):- gcd(X, Y, D),
-                  D = 1.
+mut_prime(X, Y):- gcd(X, Y, 1), !.
 
 %%% c - Euler's totient function
 % (N is the amount of mutually prime numbers to X that are < X)
