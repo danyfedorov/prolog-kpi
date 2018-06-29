@@ -105,8 +105,7 @@ split2(M, [H|T], [H|T1], L2):- H < M,
                                split2(M, T, T1, L2).
 split2(M, [H|T], L1, [H|T2]):- H > M,
                                split2(M, T, L1, T2).
-split2(M, [H|T], L1, L2):- H = M,
-                           split2(M, T, L1, L2).
+split2(M, [_|T], L1, L2):- split2(M, T, L1, L2).
 
 %%% h - Prime factors
 

@@ -1,6 +1,4 @@
- SWI Prolog
-
-I don't know Prolog that well to say for sure, but I think the code is very ugly.
+I used SWI Prolog
 
 ## Задание на работу
 
